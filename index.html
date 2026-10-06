@@ -482,6 +482,97 @@ background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,tran
 @media (prefers-reduced-motion:reduce){
 .app-header::after,#gf::before,.stat::before,.panel::before,.bar-fill::after,.quin-bar-fill::after,.clase-bar div::after,
 .tab.active::after,#gb::after,.brand-orb,#gf .gl,body::before{animation:none!important}}
+
+/* ================= GLASS AURORA · tema premium ================= */
+:root{
+--glass:rgba(255,255,255,.055);--glass-hi:rgba(255,255,255,.10);
+--glass-border:rgba(255,255,255,.10);--glass-border-hi:rgba(255,255,255,.22);
+--volt:#ffd60a;--arc:#6fb7ff;--ink:rgba(8,10,18,.62);
+}
+
+/* Fondo: aurora animada detrás del canvas de rayos */
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+background:
+radial-gradient(640px 420px at 12% 8%,rgba(111,183,255,.14),transparent 65%),
+radial-gradient(760px 520px at 88% 18%,rgba(255,214,10,.10),transparent 65%),
+radial-gradient(680px 480px at 50% 96%,rgba(155,107,255,.12),transparent 65%);
+filter:blur(6px);animation:auroraDrift 22s ease-in-out infinite alternate}
+@keyframes auroraDrift{from{transform:translate3d(-1.5%,-1%,0) scale(1)}to{transform:translate3d(1.5%,1.5%,0) scale(1.04)}}
+#volt{z-index:1}
+.app{position:relative;z-index:2}
+
+/* ===== Núcleo glass: tarjetas, paneles, KPIs ===== */
+.stat,.panel,.filter-bar,.app-header,.quin-card,.clase-card,.mix-row,.bar-row,
+.meta-strip>div,.tabs,#gf,#sbar{
+background:linear-gradient(155deg,rgba(255,255,255,.085),rgba(255,255,255,.028) 55%)!important;
+backdrop-filter:blur(22px) saturate(150%);
+-webkit-backdrop-filter:blur(22px) saturate(150%);
+border:1px solid var(--glass-border)!important;
+box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 18px 44px rgba(0,0,0,.42)}
+.panel::after,.stat::after{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;pointer-events:none;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);opacity:.5}
+.stat{overflow:hidden}
+.stat>*{position:relative;z-index:1}
+
+/* Barra superior con brillo */
+.stat::before,.panel::before{height:2px;opacity:.9}
+
+/* ===== Cabecera: glass hero ===== */
+.app-header{background:
+linear-gradient(120deg,rgba(255,214,10,.10),rgba(255,255,255,.03) 40%,rgba(111,183,255,.10))!important;
+backdrop-filter:blur(26px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 26px 70px rgba(0,0,0,.5)}
+.brand-orb{background:linear-gradient(145deg,#fff3b0,#ffd60a 45%,#ff9f1c);color:#1a1300}
+
+/* ===== Tabs flotantes ===== */
+.tabs{border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.4)}
+.tab{color:var(--text-dim)}
+.tab.active{color:#171100}
+
+/* ===== Filtros y chips ===== */
+.filter-bar{border-radius:18px}
+.chip-toggle{border-radius:10px;background:rgba(255,255,255,.03)}
+.chip-toggle.active{border-color:rgba(255,214,10,.55);background:rgba(255,214,10,.12)}
+.chip{background:rgba(255,214,10,.10);border:1px solid rgba(255,214,10,.35);backdrop-filter:blur(10px)}
+.search{background:rgba(255,255,255,.05);border:1px solid var(--glass-border)}
+
+/* ===== Gráficos y barras: relleno cristal ===== */
+.bar-track,.quin-bar,.clase-bar{background:rgba(8,10,18,.45);box-shadow:inset 0 1px 3px rgba(0,0,0,.5)}
+.bar-fill,.quin-bar-fill,.clase-bar div{border-radius:999px;
+background-image:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0) 45%,rgba(0,0,0,.25)),
+linear-gradient(90deg,#ffd60a,#ff9f1c)!important;
+box-shadow:0 0 16px rgba(255,214,10,.35),inset 0 1px 0 rgba(255,255,255,.4)}
+.bar-fill::after,.quin-bar-fill::after,.clase-bar div::after{background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.75) 50%,transparent 75%)}
+
+/* ===== Tablas: cabecera glass sticky ===== */
+.table thead th{background:rgba(10,12,20,.78)!important;backdrop-filter:blur(14px);
+border-bottom:1px solid var(--glass-border-hi)}
+.table tbody td{border-bottom:1px solid rgba(255,255,255,.05);background:rgba(255,255,255,.012)}
+.table tbody tr:hover{background:rgba(255,214,10,.06)}
+.table tbody tr.total-row{background:rgba(255,214,10,.08)}
+
+/* ===== Acceso (gate) ===== */
+#gf{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03))!important;
+backdrop-filter:blur(28px) saturate(160%);
+border:1px solid var(--glass-border-hi)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 40px 90px rgba(0,0,0,.6)}
+#gf input{background:rgba(8,10,18,.5);border:1px solid var(--glass-border)}
+#sbar{background:rgba(10,12,20,.72)!important;backdrop-filter:blur(16px)}
+
+/* ===== Hover premium ===== */
+.stat:hover,.panel:hover{transform:translateY(-4px);border-color:var(--glass-border-hi)!important;
+box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 26px 60px rgba(0,0,0,.55),0 0 44px rgba(255,214,10,.10)}
+.panel{transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
+.quin-card:hover,.clase-card:hover{border-color:var(--glass-border-hi)!important;
+box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 18px 40px rgba(0,0,0,.5)}
+.mix-row.sel,.bar-row.sel{border-color:rgba(255,214,10,.5)!important;background:rgba(255,214,10,.08)!important}
+
+/* Scrollbar cristal */
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,rgba(255,214,10,.4),rgba(111,183,255,.35));
+border-radius:99px;border:2px solid rgba(5,6,10,.7)}
+::-webkit-scrollbar-track{background:transparent}
+
+@media (prefers-reduced-motion:reduce){body::after{animation:none!important}}
+
 </style></head>
 <body><div id="root"></div>
 <script>(function(){
